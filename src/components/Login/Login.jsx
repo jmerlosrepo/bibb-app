@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import InAppMessage from '../InAppMessage/InAppMessage'
 import ActionButton from '../ActionButton/ActionButton'
+import { userLoginStatus } from '../../models/userLoginModel'
 
 const Login = ({ submitLogin, logInResponse }) => {
 
