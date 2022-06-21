@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addStrengthAction, getStrengthAction, saveStrengthAction, deleteStrengthAction } from '../../redux/actions/strengthActions'
+import { addEducationAction } from '../../redux/actions/educationActions'
 import AddressForm from '../../components/AddressForm/AddressForm'
 import AboutMeForm from '../../components/AboutMeForm/AboutMeForm'
 import ActionButton from '../../components/ActionButton/ActionButton'
@@ -9,7 +10,7 @@ import FieldSet from '../../components/FieldSet/FieldSet'
 import EducationForm from '../../components/EducationForm/EducationForm'
 import ExperienceForm from '../../components/ExperienceForm/ExperienceForm'
 import LanguagesForm from '../../components/LanguagesForm/LanguagesForm'
-import MajorSkillForm from '../../components/MajorSkillFomr/MajorSkillForm'
+import MajorSkillForm from '../../components/MajorSkillForm/MajorSkillForm'
 import PersonalInfoForm from '../../components/PersonalInfoForm/PersonalInfoForm'
 import SocialMediaForm from '../../components/SocialMediaForm/SocialMediaForm'
 import StrengthsForm from '../../components/StrengthsForm/StrengthsForm'
@@ -17,11 +18,15 @@ import StrengthsForm from '../../components/StrengthsForm/StrengthsForm'
 const Profile = () => {
 
     const strengths = useSelector(state => state.strengthReducer)
+    const education = useSelector(state => state.educationReducer)
     const [strengthSaved, setStrengthSaved] = useState(false)
     const dispatch = useDispatch()
 
-    console.log('STRENGTHS', strengths)
+    console.log('EDUCATION', education)
 
+    const handleEducationOnAddEducation = () => {
+        dispatch(addEducationAction())
+    }
     const handleStrengthsOnAddStrength = () => {
         dispatch(addStrengthAction())
     }
@@ -29,9 +34,6 @@ const Profile = () => {
         setStrengthSaved(!strengthSaved)
     }
     const handleStrengthsOnCancel = () => {}
-    const handleEducationOnAddEducation = () => {}
-    const handleEducationOnSave = () => {}
-    const handleEducationOnCancel = () => {}
     const handleExperienceOnAddExperience = () => {}
     const handleExperienceOnSave = () => {}
     const handleExperienceOnCancel = () => {}
@@ -76,7 +78,8 @@ const Profile = () => {
                 <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
                     <ActionButton text="Add Education" color="success" onClick={handleEducationOnAddEducation} />
                 </div>
-                <EducationForm onSave={handleEducationOnSave} onCancel={handleEducationOnCancel}/>
+                { education && education.map( educationItem =>  <EducationForm data={educationItem} />) }
+                
             </FieldSet>
             <FieldSet title="Professional Info:">
                 <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">

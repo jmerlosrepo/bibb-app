@@ -12,7 +12,7 @@ const strengthReducer = (state = initialStatus, action) => {
         case SAVE_STRENGTH:
             return [...state, action.payload]
         case DELETE_STRENGTH:
-            return state.filter( stateItem => stateItem.id !== action.id )
+            return state.filter( stateItem => stateItem.strengthId !== action.id )
         default:
             return state
     }
