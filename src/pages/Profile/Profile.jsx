@@ -6,7 +6,7 @@ import FieldSet from '../../components/FieldSet/FieldSet'
 import EducationSection from '../../components/EducationSection/EducationSection'
 import ExperienceSection from '../../components/ExperienceSection/ExperienceSection'
 import LanguagesSection from '../../components/LanguagesSection/LanguagesSection'
-import MajorSkillSection from '../../components/MajorSkillSection/MajorSkillSection'
+import MajorSkillsSection from '../../components/MajorSkillsSection/MajorSkillsSection'
 import PersonalInfoForm from '../../components/PersonalInfoForm/PersonalInfoForm'
 import SocialMediaSection from '../../components/SocialMediaSection/SocialMediaSection'
 import StrengthsSection from '../../components/StrengthsSection/StrengthsSection'
@@ -37,7 +37,7 @@ const Profile = () => {
                 <ExperienceSection />
             </FieldSet>
             <FieldSet title="Major Skills:">
-                <MajorSkillSection />
+                <MajorSkillsSection />
             </FieldSet>
             <FieldSet title="Languages:">
                 <LanguagesSection />
