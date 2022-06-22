@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ActionButton from '../ActionButton/ActionButton'
+import { getStrengthAction, saveStrengthAction, deleteStrengthAction } from '../../redux/actions/strengthActions'
 
 const StrengthsForm = ({ data, onSave, onCancel }) => {
 
@@ -10,6 +11,13 @@ const StrengthsForm = ({ data, onSave, onCancel }) => {
   const [strengthIcon, setStrengthIcon] = useState(icon)
   const [strengthTitle, setStrengthTitle] = useState("HOLA")
   const [strengthDetail, setStrengthDetail] = useState(detail)
+
+  const handleStrengthsOnSave = () => {
+    setStrengthSaved(!strengthSaved)
+  }
+  const handleStrengthsOnCancel = () => {
+    setStrengthSaved(!strengthSaved)
+  }
 
   return (
     <div className="strengthsForm">
@@ -39,8 +47,8 @@ const StrengthsForm = ({ data, onSave, onCancel }) => {
           :  <div>{strengthDetail}</div> }
         </div>
         <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-          <ActionButton text="Cancel" color="danger" onClick={ onCancel } />
-          <ActionButton text="Save" color="primary" onClick={ onSave } />
+          <ActionButton text="Cancel" color="danger" onClick={ handleStrengthsOnCancel } />
+          <ActionButton text="Save" color="primary" onClick={ handleStrengthsOnSave } />
         </div>
     </div>
   )

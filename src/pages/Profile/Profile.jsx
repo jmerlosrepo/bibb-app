@@ -5,7 +5,7 @@ import { addEducationAction } from '../../redux/actions/educationActions'
 import AddressForm from '../../components/AddressForm/AddressForm'
 import AboutMeForm from '../../components/AboutMeForm/AboutMeForm'
 import ActionButton from '../../components/ActionButton/ActionButton'
-import CertificatesForm from '../../components/CertificatesForm/CertificatesForm'
+import CertificatesSection from '../../components/CertificatesSection/CertificatesSection'
 import FieldSet from '../../components/FieldSet/FieldSet'
 import EducationForm from '../../components/EducationForm/EducationForm'
 import ExperienceForm from '../../components/ExperienceForm/ExperienceForm'
@@ -14,6 +14,7 @@ import MajorSkillForm from '../../components/MajorSkillForm/MajorSkillForm'
 import PersonalInfoForm from '../../components/PersonalInfoForm/PersonalInfoForm'
 import SocialMediaForm from '../../components/SocialMediaForm/SocialMediaForm'
 import StrengthsForm from '../../components/StrengthsForm/StrengthsForm'
+import StrengthsSection from '../../components/StrengthsSection/StrengthsSection'
 
 const Profile = () => {
 
@@ -43,9 +44,8 @@ const Profile = () => {
     const handleLanguagesOnAddLanguage = () => {}
     const handleLanguageOnSave = () => {}
     const handleLanguageOnCancel = () => {}
-    const handleCertificatesOnAddCertificate = () => {}
-    const handleCertificatesOnSave = () => {}
-    const handleCertificatesOnCancel = () => {}
+    
+    
     const handleSocialMediaOnAddSocialMedia = () => {}
     const handleSocialMediaOnSave = () => {}
     const handleSocialMediaOnCancel = () => {}
@@ -64,15 +64,7 @@ const Profile = () => {
                 <AboutMeForm />
             </FieldSet>
             <FieldSet title="My Strengths:">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton disabled={!strengthSaved} text="Add Strength" color="success" onClick={handleStrengthsOnAddStrength} />
-                </div>
-                { strengths.map( 
-                        strength => (
-                            <StrengthsForm data={strength} onSave={handleStrengthsOnSave} onCancel={handleStrengthsOnCancel} />
-                        ) 
-                    ) 
-                }
+                <StrengthsSection />
             </FieldSet>
             <FieldSet title="Education Info:">
                 <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
@@ -106,10 +98,8 @@ const Profile = () => {
                 <LanguagesForm onSave={handleLanguageOnSave} onCancel={handleLanguageOnCancel} />
             </FieldSet>
             <FieldSet title="Certificates">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Certificate" color="success" onClick={handleCertificatesOnAddCertificate} />
-                </div>
-                <CertificatesForm onSave={handleCertificatesOnSave} onCancel={handleCertificatesOnCancel} />
+                <CertificatesSection />
+                
             </FieldSet>
             <FieldSet title="Social Media">
                 <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
