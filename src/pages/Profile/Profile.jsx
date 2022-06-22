@@ -6,22 +6,15 @@ import CertificatesSection from '../../components/CertificatesSection/Certificat
 import FieldSet from '../../components/FieldSet/FieldSet'
 import EducationSection from '../../components/EducationSection/EducationSection'
 import ExperienceSection from '../../components/ExperienceSection/ExperienceSection'
-import LanguagesForm from '../../components/LanguagesForm/LanguagesForm'
-import MajorSkillForm from '../../components/MajorSkillForm/MajorSkillForm'
+import LanguagesSection from '../../components/LanguagesSection/LanguagesSection'
+import MajorSkillSection from '../../components/MajorSkillSection/MajorSkillSection'
 import PersonalInfoForm from '../../components/PersonalInfoForm/PersonalInfoForm'
-import SocialMediaForm from '../../components/SocialMediaForm/SocialMediaForm'
+import SocialMediaSection from '../../components/SocialMediaSection/SocialMediaSection'
 import StrengthsSection from '../../components/StrengthsSection/StrengthsSection'
 
 const Profile = () => {
-    const handleMajorSkillOnAddMajorSkill = () => {}
-    const handleMajorSkillOnSave = () => {}
-    const handleMajorSkillOnCancel = () => {}
-    const handleLanguagesOnAddLanguage = () => {}
-    const handleLanguageOnSave = () => {}
-    const handleLanguageOnCancel = () => {}
-    const handleSocialMediaOnAddSocialMedia = () => {}
-    const handleSocialMediaOnSave = () => {}
-    const handleSocialMediaOnCancel = () => {}
+    
+    
 
   return (
     <div className="container mainContainer">
@@ -46,31 +39,16 @@ const Profile = () => {
                 <ExperienceSection />
             </FieldSet>
             <FieldSet title="Major Skills:">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Major Skill" color="success" onClick={handleMajorSkillOnAddMajorSkill} />
-                </div>
-                <MajorSkillForm onSave={handleMajorSkillOnSave} onCancel={handleMajorSkillOnCancel} />
+                <MajorSkillSection />
             </FieldSet>
             <FieldSet title="Languages:">
-                <div className="form-check">
-                    <input onChange={() => {}} className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-                    <label className="form-check-label" htmlFor="flexCheckChecked">
-                        Show Languages as Badges
-                    </label>
-                </div>
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Language" color="success" onClick={handleLanguagesOnAddLanguage} />
-                </div>
-                <LanguagesForm onSave={handleLanguageOnSave} onCancel={handleLanguageOnCancel} />
+                <LanguagesSection />
             </FieldSet>
             <FieldSet title="Certificates">
                 <CertificatesSection />
             </FieldSet>
             <FieldSet title="Social Media">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Social Media" color="success" onClick={handleSocialMediaOnAddSocialMedia} />
-                </div>
-                <SocialMediaForm onSave={handleSocialMediaOnSave} onCancel={handleSocialMediaOnCancel} />
+                <SocialMediaSection />
             </FieldSet>
         </form>
     </div>
