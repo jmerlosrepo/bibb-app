@@ -1,0 +1,57 @@
+import { postData, getData } from "../../helpers/apiCalls"
+import { GET_LANGUAGES, ADD_LANGUAGES, SAVE_LANGUAGES, SAVE_TEMP_LANGUAGES, DELETE_LANGUAGES } from "./constants"
+
+const addLanguage = (id) => {
+    return {
+        type: ADD_LANGUAGES,
+        id
+    }
+}
+
+const getLanguage = (id) => {
+    return {
+        type: GET_LANGUAGES,
+        id
+    }
+}
+
+const saveLanguage = (languageData) => {
+    return {
+        type: SAVE_LANGUAGES,
+        payload: languageData
+    }
+}
+
+const deleteLanguage = (id) => {
+    return {
+        type: DELETE_LANGUAGES,
+        id
+    }
+}
+
+export const saveTempLanguageAction = (languageData) => {
+    return {
+        type: SAVE_TEMP_LANGUAGES,
+        payload: languageData
+    }
+}
+
+export const addLanguageAction = (id) => dispatch => {
+    const response = postData({id})
+    dispatch(addLanguage({...response, id}))
+}
+
+export const getLanguageAction = (id) => dispatch => {
+    const response = getData({id})
+    dispatch(getLanguage({...response, id}))
+}
+
+export const saveLanguageAction = (languageData) => dispatch => {
+    const response = postData(languageData)
+    dispatch(saveLanguage({...response, ...languageData}))
+}
+
+export const deleteLanguageAction = (id) => dispatch => {
+    const response = postData({id})
+    dispatch(deleteLanguage({...response, id}))
+}

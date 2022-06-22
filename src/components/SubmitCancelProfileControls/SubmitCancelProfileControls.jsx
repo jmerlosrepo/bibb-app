@@ -5,7 +5,7 @@ const SubmitCancelProfileControls = () => {
     const handleProfileSubmit = () => {}
 
   return (
-    <div>
+    <div className="button-spacing save-profile-button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
         <ActionButton text="Save Profile" color="primary" disabled={false} onClick={handleProfileSubmit} />
     </div>
   )

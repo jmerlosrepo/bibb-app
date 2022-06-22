@@ -1,5 +1,5 @@
 import { postData, getData } from '../../helpers/apiCalls'
-import { ADD_STRENGTH, GET_STRENGTH, SAVE_STRENGTH, DELETE_STRENGTH } from "../actions/constants"
+import { ADD_STRENGTH, GET_STRENGTH, SAVE_STRENGTH, SAVE_TEMP_STRENGTH, DELETE_STRENGTH } from "../actions/constants"
 
 const getStrength = (id) => {
     return {
@@ -22,10 +22,22 @@ const deleteStrength = (id) => {
     }
 }
 
-export const addStrengthAction = () => {
+const addStrength = (id) => {
     return {
         type: ADD_STRENGTH
     }
+}
+
+export const saveTempStrength = (strengthData) => {
+    return {
+        type: SAVE_TEMP_STRENGTH,
+        payload: strengthData
+    }
+}
+
+export const addStrengthAction = (id) => dispatch => {
+    const response = getData({id})
+    dispatch(addStrength({...response, id}))
 }
 
 export const getStrengthAction = (id) => dispatch => {

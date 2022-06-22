@@ -1,5 +1,5 @@
 import { postData, getData } from "../../helpers/apiCalls"
-import { GET_ABOUT_ME_INFO, SAVE_ABOUT_ME_INFO, DELETE_ABOUT_ME_INFO, UPDATE_ABOUT_ME_INFO } from "./constants"
+import { GET_ABOUT_ME_INFO, SAVE_ABOUT_ME_INFO, SAVE_TEMP_ABOUT_ME_INFO, DELETE_ABOUT_ME_INFO, UPDATE_ABOUT_ME_INFO } from "./constants"
 
 export const getAboutMeAction = (id) => dispatch => {
     const response = getData({id})
@@ -18,7 +18,14 @@ export const updateAboutMeAction = (aboutMeData) => dispatch => {
 
 export const deleteAboutMeAction = (id) => dispatch => {
     const response = postData(id)
-    dispatch(deleteAboutMe({...response, id})) 
+    dispatch(deleteAboutMe({...response, id}))
+}
+
+export const saveTempAboutMeAction = (aboutMeData) => {
+    return {
+        type: SAVE_TEMP_ABOUT_ME_INFO,
+        payload: aboutMeData
+    }
 }
 
 const getAboutMe = (id) => {

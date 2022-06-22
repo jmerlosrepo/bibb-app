@@ -12,7 +12,7 @@ import SocialMediaSection from '../../components/SocialMediaSection/SocialMediaS
 import StrengthsSection from '../../components/StrengthsSection/StrengthsSection'
 import SubmitCancelProfileControls from '../../components/SubmitCancelProfileControls/SubmitCancelProfileControls'
 const Profile = () => {
-    
+
     return (
         <div className="container mainContainer">
         <h1>Profile</h1>

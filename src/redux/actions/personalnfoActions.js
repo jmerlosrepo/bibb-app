@@ -1,5 +1,5 @@
 import { postData, getData } from "../../helpers/apiCalls"
-import { GET_PERSONAL_INFO, SAVE_PERSONAL_INFO, UPDATE_PERSONAL_INFO, DELETE_PERSONAL_INFO } from "./constants";
+import { GET_PERSONAL_INFO, SAVE_PERSONAL_INFO, SAVE_TEMP_PERSONAL_INFO, UPDATE_PERSONAL_INFO, DELETE_PERSONAL_INFO } from "./constants";
 
 export const getPersonalInfoActions = (id) => dispatch => {
     const response = getData({id})
