@@ -1,7 +1,6 @@
 import React from 'react'
 import AddressForm from '../../components/AddressForm/AddressForm'
 import AboutMeForm from '../../components/AboutMeForm/AboutMeForm'
-import ActionButton from '../../components/ActionButton/ActionButton'
 import CertificatesSection from '../../components/CertificatesSection/CertificatesSection'
 import FieldSet from '../../components/FieldSet/FieldSet'
 import EducationSection from '../../components/EducationSection/EducationSection'
@@ -11,15 +10,14 @@ import MajorSkillSection from '../../components/MajorSkillSection/MajorSkillSect
 import PersonalInfoForm from '../../components/PersonalInfoForm/PersonalInfoForm'
 import SocialMediaSection from '../../components/SocialMediaSection/SocialMediaSection'
 import StrengthsSection from '../../components/StrengthsSection/StrengthsSection'
-
+import SubmitCancelProfileControls from '../../components/SubmitCancelProfileControls/SubmitCancelProfileControls'
 const Profile = () => {
     
-    
-
-  return (
-    <div className="container mainContainer">
+    return (
+        <div className="container mainContainer">
         <h1>Profile</h1>
         <form>
+            <SubmitCancelProfileControls />
             <FieldSet title="Personal Info:">
                 <PersonalInfoForm />
             </FieldSet>
@@ -50,6 +48,7 @@ const Profile = () => {
             <FieldSet title="Social Media">
                 <SocialMediaSection />
             </FieldSet>
+            <SubmitCancelProfileControls />
         </form>
     </div>
   )
