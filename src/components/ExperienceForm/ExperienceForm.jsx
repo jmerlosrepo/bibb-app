@@ -1,7 +1,7 @@
 import React from 'react'
 import ActionButton from '../ActionButton/ActionButton'
 
-const ExperienceForm = ({ onSave, onCancel }) => {
+const ExperienceForm = () => {
     const handleExperienceOnSave = () => {}
     const handleExperienceOnCancel = () => {}
   return (
