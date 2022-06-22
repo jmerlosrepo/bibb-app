@@ -1,3 +1,5 @@
+import { addressInfo } from "./addressInfoModel";
+
 export const personalInfo = {
     id: '',
     profileImage: '',
@@ -8,11 +10,5 @@ export const personalInfo = {
     age: 0,
     phone: '',
     email: '',
-    address: {
-        street: '',
-        street2: '',
-        zipCode: '',
-        city: '',
-        state: ''
-    }
+    address: addressInfo
 }

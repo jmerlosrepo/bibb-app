@@ -3,7 +3,7 @@ import { navigationLinks } from '../../config/navigationConfig'
 
 const initialState = navigationLinks
 
-const nagivagtionReducer = (state = initialState, action) => {
+const navigationReducer = (state = initialState, action) => {
     switch (action.type) {
         case INITIALIZE_NAVIGATION:
             return state = navigationLinks
@@ -14,4 +14,4 @@ const nagivagtionReducer = (state = initialState, action) => {
     }
 }
 
-export default nagivagtionReducer
+export default navigationReducer
