@@ -2,6 +2,8 @@ import React from 'react'
 import ActionButton from '../ActionButton/ActionButton'
 
 const ExperienceForm = ({ onSave, onCancel }) => {
+    const handleExperienceOnSave = () => {}
+    const handleExperienceOnCancel = () => {}
   return (
     <div className="experienceForm">
         <div className="row">
@@ -37,8 +39,8 @@ const ExperienceForm = ({ onSave, onCancel }) => {
             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-          <ActionButton text="Cancel" color="danger" onClick={onCancel} />
-          <ActionButton text="Save" color="primary" onClick={onSave} />
+          <ActionButton text="Cancel" color="danger" onClick={handleExperienceOnCancel} />
+          <ActionButton text="Save" color="primary" onClick={handleExperienceOnSave} />
         </div>
     </div>
   )
