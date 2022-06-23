@@ -5,5 +5,6 @@ export const professionalInfo = {
     startDate: '',
     endDate: '',
     current: false,
-    activities: ''
+    activities: '',
+    tempSaved: false
 }

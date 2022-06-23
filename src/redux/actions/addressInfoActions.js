@@ -29,5 +29,5 @@ export const getAddressInfoAction = (id) => dispatch => {
 
 export const saveAddressInfoAction = (addressInfoData) => dispatch => {
     const response = postData(addressInfoData)
-    dispatch(saveAddressInfo(addressInfoData))
+    dispatch(saveAddressInfo({...response, ...addressInfoData}))
 }

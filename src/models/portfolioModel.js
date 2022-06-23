@@ -8,5 +8,6 @@ export const portfolio = {
     url: '',
     technology: [],
     social: [],
-    images: []
+    images: [],
+    tempSaved: false
 }

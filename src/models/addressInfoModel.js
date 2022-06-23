@@ -3,5 +3,6 @@ export const addressInfo = {
     street2: '',
     zipCode: '',
     city: '',
-    state: ''
+    state: '',
+    tempSaved: false
 }

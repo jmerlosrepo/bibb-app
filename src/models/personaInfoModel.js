@@ -10,5 +10,6 @@ export const personalInfo = {
     age: 0,
     phone: '',
     email: '',
-    address: addressInfo
+    address: addressInfo,
+    tempSaved: false
 }

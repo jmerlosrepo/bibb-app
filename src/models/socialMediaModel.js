@@ -1,5 +1,6 @@
 export const socialMedia = {
     id: '',
     url: '',
-    icon: ''
+    icon: '',
+    tempSaved: false
 }

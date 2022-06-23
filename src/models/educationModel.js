@@ -6,5 +6,5 @@ export const education = {
     startDate: '',
     endDate: '',
     current: false,
-    saved: false
+    tempSaved: false
 }

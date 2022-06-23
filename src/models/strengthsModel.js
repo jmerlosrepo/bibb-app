@@ -4,5 +4,5 @@ export const strength = {
     title: '',
     icon: '',
     detail: '',
-    saved: false
+    tempSaved: false
 }
