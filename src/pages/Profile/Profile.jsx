@@ -8,6 +8,7 @@ import ExperienceSection from '../../components/ExperienceSection/ExperienceSect
 import LanguagesSection from '../../components/LanguagesSection/LanguagesSection'
 import MajorSkillsSection from '../../components/MajorSkillsSection/MajorSkillsSection'
 import PersonalInfoForm from '../../components/PersonalInfoForm/PersonalInfoForm'
+import PortfolioSection from '../../components/PortfolioSection/PortfolioSection'
 import SocialMediaSection from '../../components/SocialMediaSection/SocialMediaSection'
 import StrengthsSection from '../../components/StrengthsSection/StrengthsSection'
 import SubmitCancelProfileControls from '../../components/SubmitCancelProfileControls/SubmitCancelProfileControls'
@@ -47,6 +48,9 @@ const Profile = () => {
             </FieldSet>
             <FieldSet title="Social Media">
                 <SocialMediaSection />
+            </FieldSet>
+            <FieldSet title="Portfolio">
+                <PortfolioSection />
             </FieldSet>
             <SubmitCancelProfileControls />
         </form>
