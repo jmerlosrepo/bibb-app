@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addStrengthAction } from '../../redux/actions/strengthActions'
 import StrengthsForm from '../StrengthsForm/StrengthsForm'
@@ -9,6 +9,15 @@ const StrengthsSection = () => {
     const strengths = useSelector(state => state.strengthReducer)
     const dispatch = useDispatch()
     
+    useEffect(() => {
+        getUnsavedStrengths()
+    }, [strengths])
+
+    const getUnsavedStrengths = () => { 
+        let unsavedStrength = strengths.filter( strength => strength.tempSaved === false )
+        setStrengthSaved( saved => unsavedStrength ? false : true)
+    }
+
     const handleStrengthsOnAddStrength = () => {
         dispatch(addStrengthAction())
     }
