@@ -1,4 +1,5 @@
-import { postData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { LOGIN_USER } from "./constants";
 
 const logInUser = (loginData) => {
@@ -9,6 +10,7 @@ const logInUser = (loginData) => {
 }
 
 export const logInUserAction = (loginData) => dispatch => {
-    const response = postData(loginData)
-    dispatch(logInUser({...loginData, ...response}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLogIn, 'POST', loginData )
+    dispatch(logInUser({...loginData, ...apiResponse}))
 }

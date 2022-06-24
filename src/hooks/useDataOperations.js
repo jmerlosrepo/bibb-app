@@ -1,21 +1,24 @@
+import { useState } from 'react'
 import axios from 'axios'
-import { endPoints } from '../config/apiEndpoints'
 
 export const useDataOperations = () => {
+    const [response, setResponse] = useState(null)
+    const apiCall = async (url, method = 'get', dataObj = null, paramsObj = null) => {
 
-    const getData = (body, endpointName) => {
-        const endpoint = endPoints[endpointName]
-        axios.get()
-    }
-    const postData = (body, endpointName) => {
-        const endpoint = endPoints[endpointName]
-        axios.post()
+        const config = {
+            method,
+            url
+        }
+
+        if(paramsObj) config.params = paramsObj
+        if(dataObj) config.data = dataObj
+
+        try{
+            setResponse( prevResponse => prevResponse = axios(config))
+        }catch(err){
+            response.error = err
+        }
     }
 
-    const deleteData = (body, endpointName) => {
-        const endpoint = endPoints[endpointName]
-        axios.delete()
-    }
-
-    return [ getData, postData, deleteData ]
+    return [ response, apiCall ]
 }

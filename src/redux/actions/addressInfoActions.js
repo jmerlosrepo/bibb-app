@@ -1,4 +1,5 @@
-import { postData, getData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { GET_ADDRESS_INFO,  SAVE_ADDRESS_INFO, SAVE_TEMP_ADDRESS_INFO } from '../actions/constants1'
 
 const getAddressInfo = (id) => {
@@ -23,11 +24,13 @@ export const saveTempAddressInfoAction = (addressInfoData) => {
 }
 
 export const getAddressInfoAction = (id) => dispatch => {
-    const response = getData({id})
-    dispatch(getAddressInfo({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userAddress, 'GET', null, {id} )
+    dispatch(getAddressInfo({...apiResponse, id}))
 }
 
 export const saveAddressInfoAction = (addressInfoData) => dispatch => {
-    const response = postData(addressInfoData)
-    dispatch(saveAddressInfo({...response, ...addressInfoData}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userAddress, 'POST', addressInfoData )
+    dispatch(saveAddressInfo({...apiResponse, ...addressInfoData}))
 }

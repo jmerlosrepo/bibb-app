@@ -1,4 +1,5 @@
-import { postData, getData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { GET_MAJOR_SKILLS, ADD_MAJOR_SKILLS, SAVE_MAJOR_SKILLS, SAVE_TEMP_MAJOR_SKILLS, DELETE_MAJOR_SKILLS } from "./constants"
 
 const getMajorSkills = (id) => {
@@ -37,21 +38,25 @@ export const saveTempMajorSkillsAction = (majorSkillData) => {
 }
 
 export const addMajorSkillsAction = (id) => dispatch => {
-    const response = postData()
-    dispatch(addMajorSkills({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userMajorSkills, 'POST', {id} )
+    dispatch(addMajorSkills({...apiResponse, id}))
 }
 
 export const getMajorSkillsAction = (id) => dispatch => {
-    const response = getData()
-    dispatch(getMajorSkills({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userMajorSkills, 'GET', null, {id} )
+    dispatch(getMajorSkills({...apiResponse, id}))
 }
 
 export const saveMajorSkillsAction = (majorSkillData) => dispatch => {
-    const response = postData()
-    dispatch(saveMajorSkills({...response, ...majorSkillData}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userMajorSkills, 'POST', majorSkillData )
+    dispatch(saveMajorSkills({...apiResponse, ...majorSkillData}))
 }
 
 export const deleteMajorSkillsAction = (id) => dispatch => {
-    const response = postData()
-    dispatch(deleteMajorSkills({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userMajorSkills, 'DELETE', {id} )
+    dispatch(deleteMajorSkills({...apiResponse, id}))
 }

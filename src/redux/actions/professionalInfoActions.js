@@ -1,4 +1,5 @@
-import { postData, getData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { SAVE_PROFESSIONAL_INFO, SAVE_TEMP_PROFESSIONAL_INFO, GET_PROFESSIONAL_INFO, ADD_PROFESSIONAL_INFO, DELETE_PROFESSIONAL_INFO} from "./constants"
 
 const addProfessionalInfo = (id) => {
@@ -34,21 +35,25 @@ export const saveTempProfessionalInfoAction = (professionalData) => {
 }
 
 export const addProfessionalInfoAction = (id) => dispatch => {
-    const response = postData({id})
-    dispatch(addProfessionalInfo({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userProfessionalInfo, 'POST', {id} )
+    dispatch(addProfessionalInfo({...apiResponse, id}))
 }
 
 export const saveProfessionalInfoAction = (professionalData) => dispatch => {
-    const response = postData({professionalData})
-    dispatch(saveProfessionalInfo({...response, ...professionalData}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userProfessionalInfo, 'POST', professionalData )
+    dispatch(saveProfessionalInfo({...apiResponse, ...professionalData}))
 }
 
 export const getProfessionalInfoAction = (id) => dispatch => {
-    const response = getData({id})
-    dispatch(getProfessionalInfo({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userProfessionalInfo, 'GET', null, {id} )
+    dispatch(getProfessionalInfo({...apiResponse, id}))
 }
 
 export const deleteProfessionalInfoAction = (id) => dispatch => {
-    const response = postData({id})
-    dispatch(deleteProfessionalInfo({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userProfessionalInfo, 'DELETE', null, {id} )
+    dispatch(deleteProfessionalInfo({...apiResponse, id}))
 }

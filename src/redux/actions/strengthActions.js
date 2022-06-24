@@ -1,4 +1,5 @@
-import { postData, getData } from '../../helpers/apiCalls'
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { ADD_STRENGTH, GET_STRENGTH, SAVE_STRENGTH, SAVE_TEMP_STRENGTH, DELETE_STRENGTH } from "../actions/constants"
 
 const getStrength = (id) => {
@@ -36,21 +37,25 @@ export const saveTempStrength = (strengthData) => {
 }
 
 export const addStrengthAction = (id) => dispatch => {
-    const response = getData({id})
-    dispatch(addStrength({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userSterngths, 'POST', {id} )
+    dispatch(addStrength({...apiResponse, id}))
 }
 
 export const getStrengthAction = (id) => dispatch => {
-    const response = getData({id})
-    dispatch(getStrength({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userSterngths, 'GET', null, {id} )
+    dispatch(getStrength({...apiResponse, id}))
 }
 
 export const saveStrengthAction = (strengthData) => dispatch => {
-    const response = postData(strengthData)
-    dispatch(saveStrength({...strengthData, ...response}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userSterngths, 'POST', strengthData )
+    dispatch(saveStrength({...strengthData, ...apiResponse}))
 }
 
 export const deleteStrengthAction = (id) => dispatch => {
-    const response = postData({id})
-    dispatch(deleteStrength({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userSterngths, 'DELETE', null, {id} )
+    dispatch(deleteStrength({...apiResponse, id}))
 }

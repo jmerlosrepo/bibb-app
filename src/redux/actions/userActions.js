@@ -1,4 +1,5 @@
-import { postData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { REGISTER_USER } from "./constants"
 
 const registerNewUser = (userData) => {
@@ -9,6 +10,7 @@ const registerNewUser = (userData) => {
 }
 
 export const registerNewUserAction = (userData) => dispatch => {
-    const response = postData(userData)
-    dispatch(registerNewUser({...userData, ...response }))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userRegister, 'POST', userData )
+    dispatch(registerNewUser({...userData, ...apiResponse }))
 }

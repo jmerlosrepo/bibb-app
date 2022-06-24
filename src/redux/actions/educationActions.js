@@ -1,4 +1,5 @@
-import { postData, getData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { GET_EDUCATION, ADD_EDUCATION, SAVE_TEMP_EDUCATION, SAVE_EDUCATION, DELETE_EDUCATION } from "./constants"
 
 const getEducation = (educationResponseData) => {
@@ -29,9 +30,10 @@ const deleteEducation = (id) => {
     }
 }
 
-export const addEducationAction = (educationData) => dispatch => {
-    const response = postData(educationData)
-    dispatch(addEducation({...educationData, ...response}))
+export const addEducationAction = (id) => dispatch => {
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userEducation, 'POST', {id} )
+    dispatch(addEducation({...apiResponse, id}))
 }
 
 export const saveTempEducation = (educationData) => {
@@ -42,16 +44,19 @@ export const saveTempEducation = (educationData) => {
 }
 
 export const getEducationAction = (id) => dispatch => {
-    const response = getData({id})
-    dispatch(getEducation({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userEducation, 'GET', null, {id} )
+    dispatch(getEducation({...apiResponse, id}))
 }
 
 export const saveEducationAction = (educationData) => dispatch => {
-    const response = postData(educationData)
-    dispatch(saveEducation({...educationData, ...response}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userEducation, 'POST', educationData )
+    dispatch(saveEducation({...educationData, ...apiResponse}))
 }
 
 export const deleteEducationAction = (id) => dispatch => {
-    const response = postData({id})
-    dispatch(deleteEducation({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userEducation, 'DELETE', null, {id} )
+    dispatch(deleteEducation({...apiResponse, id}))
 }

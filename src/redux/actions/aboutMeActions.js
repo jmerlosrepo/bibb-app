@@ -1,24 +1,30 @@
-import { postData, getData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { GET_ABOUT_ME_INFO, SAVE_ABOUT_ME_INFO, SAVE_TEMP_ABOUT_ME_INFO, DELETE_ABOUT_ME_INFO, UPDATE_ABOUT_ME_INFO } from "./constants"
 
+
 export const getAboutMeAction = (id) => dispatch => {
-    const response = getData({id})
-    dispatch(getAboutMe(response))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userAboutMe, 'GET', null, {id} )
+    dispatch(getAboutMe(apiResponse))
 }
 
 export const saveAboutMeAction = (aboutMeData) => dispatch => {
-    const response = postData(aboutMeData)
-    dispatch(saveAboutMe({...aboutMeData, ...response}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userAboutMe, 'POST', aboutMeData)
+    dispatch(saveAboutMe({...aboutMeData, ...apiResponse}))
 }
 
 export const updateAboutMeAction = (aboutMeData) => dispatch => {
-    const response  = postData(aboutMeData)
-    dispatch(updateAboutMe({...aboutMeData, ...response}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userAboutMe, 'PATCH', aboutMeData)
+    dispatch(updateAboutMe({...aboutMeData, ...apiResponse}))
 }
 
 export const deleteAboutMeAction = (id) => dispatch => {
-    const response = postData(id)
-    dispatch(deleteAboutMe({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userAboutMe, 'DELETE', null, {id})
+    dispatch(deleteAboutMe({...apiResponse, id}))
 }
 
 export const saveTempAboutMeAction = (aboutMeData) => {

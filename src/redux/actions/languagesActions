@@ -1,4 +1,5 @@
-import { postData, getData } from "../../helpers/apiCalls"
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
 import { GET_LANGUAGES, ADD_LANGUAGES, SAVE_LANGUAGES, SAVE_TEMP_LANGUAGES, DELETE_LANGUAGES } from "./constants"
 
 const addLanguage = (id) => {
@@ -37,21 +38,25 @@ export const saveTempLanguageAction = (languageData) => {
 }
 
 export const addLanguageAction = (id) => dispatch => {
-    const response = postData({id})
-    dispatch(addLanguage({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'POST', {id} )
+    dispatch(addLanguage({...apiResponse, id}))
 }
 
 export const getLanguageAction = (id) => dispatch => {
-    const response = getData({id})
-    dispatch(getLanguage({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'GET', null, {id} )
+    dispatch(getLanguage({...apiResponse, id}))
 }
 
 export const saveLanguageAction = (languageData) => dispatch => {
-    const response = postData(languageData)
-    dispatch(saveLanguage({...response, ...languageData}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'GET', languageData )
+    dispatch(saveLanguage({...apiResponse, ...languageData}))
 }
 
 export const deleteLanguageAction = (id) => dispatch => {
-    const response = postData({id})
-    dispatch(deleteLanguage({...response, id}))
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'DELETE', null, {id} )
+    dispatch(deleteLanguage({...apiResponse, id}))
 }
