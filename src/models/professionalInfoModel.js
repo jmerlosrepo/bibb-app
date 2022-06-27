@@ -1,5 +1,6 @@
 export const professionalInfo = {
     id: '',
+    professionalInfoId: '',
     organization: '',
     jobTitle: '',
     startDate: '',
