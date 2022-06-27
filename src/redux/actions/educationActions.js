@@ -1,6 +1,6 @@
 import { useDataOperations } from "../../hooks/useDataOperations"
 import { endPoints } from "../../config/apiEndpoints"
-import { GET_EDUCATION, ADD_EDUCATION, SAVE_TEMP_EDUCATION, SAVE_EDUCATION, DELETE_EDUCATION } from "./constants"
+import { GET_EDUCATION, ADD_EDUCATION, SAVE_TEMP_EDUCATION, SAVE_EDUCATION, DELETE_EDUCATION, EDIT_EDUCATION } from "./constants"
 
 const getEducation = (educationResponseData) => {
     return {
@@ -9,10 +9,9 @@ const getEducation = (educationResponseData) => {
     }
 }
 
-const addEducation = (educationData) => {
+const addEducation = () => {
     return {
         type: ADD_EDUCATION,
-        payload: educationData
     }
 }
 
@@ -30,13 +29,20 @@ const deleteEducation = (id) => {
     }
 }
 
-export const addEducationAction = (id) => dispatch => {
-    const [ apiResponse, apiCallFunction ] = useDataOperations()
-    apiCallFunction(endPoints.userEducation, 'POST', {id} )
-    dispatch(addEducation({...apiResponse, id}))
+export const editEducationAction = (id) => {
+    return {
+        type: EDIT_EDUCATION,
+        id
+    }
 }
 
-export const saveTempEducation = (educationData) => {
+export const addEducationAction = () => dispatch => {
+    // const [ apiResponse, apiCallFunction ] = useDataOperations()
+    // apiCallFunction(endPoints.userEducation, 'POST', {id} )
+    dispatch(addEducation())
+}
+
+export const saveTempEducationAction = (educationData) => {
     return {
         type: SAVE_TEMP_EDUCATION,
         payload: educationData
@@ -44,19 +50,19 @@ export const saveTempEducation = (educationData) => {
 }
 
 export const getEducationAction = (id) => dispatch => {
-    const [ apiResponse, apiCallFunction ] = useDataOperations()
-    apiCallFunction(endPoints.userEducation, 'GET', null, {id} )
-    dispatch(getEducation({...apiResponse, id}))
+    // const [ apiResponse, apiCallFunction ] = useDataOperations()
+    // apiCallFunction(endPoints.userEducation, 'GET', null, {id} )
+    dispatch(getEducation(id))
 }
 
 export const saveEducationAction = (educationData) => dispatch => {
-    const [ apiResponse, apiCallFunction ] = useDataOperations()
-    apiCallFunction(endPoints.userEducation, 'POST', educationData )
-    dispatch(saveEducation({...educationData, ...apiResponse}))
+    // const [ apiResponse, apiCallFunction ] = useDataOperations()
+    // apiCallFunction(endPoints.userEducation, 'POST', educationData )
+    dispatch(saveEducation(educationData))
 }
 
 export const deleteEducationAction = (id) => dispatch => {
-    const [ apiResponse, apiCallFunction ] = useDataOperations()
-    apiCallFunction(endPoints.userEducation, 'DELETE', null, {id} )
-    dispatch(deleteEducation({...apiResponse, id}))
+    // const [ apiResponse, apiCallFunction ] = useDataOperations()
+    // apiCallFunction(endPoints.userEducation, 'DELETE', null, {id} )
+    dispatch(deleteEducation(id))
 }

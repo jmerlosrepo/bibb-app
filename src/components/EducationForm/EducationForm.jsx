@@ -1,56 +1,53 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import ActionButton from '../ActionButton/ActionButton'
 import { education } from '../../models/educationModel'
-import { saveEducationAction, deleteEducationAction } from '../../redux/actions/educationActions'
+import { saveTempEducationAction, deleteEducationAction, editEducationAction } from '../../redux/actions/educationActions'
 
 const EducationForm = ({data}) => {
+    const { educationId, institution, degree, startDate, endDate, current, tempSaved } = data
 
-    const [educationId, setEducationId] = useState(0)
-    const [institution, setInstitution] = useState('')
-    const [degree, setDegree] = useState('')
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('')
-    const [isCurrentJob, setIsCurrentJob] = useState(false)
-    const isEditMode = useRef(false)
+    const [EduId, setEduId] = useState(educationId)
+    const [EduInstitution, setEduInstitution] = useState(institution)
+    const [EduDegree, setEduDegree] = useState(degree)
+    const [eduStartDate, setEduStartDate] = useState(startDate)
+    const [eduEndDate, setEduEndDate] = useState(endDate)
+    const [eduCurrent, setEduCurrent] = useState(current)
+    const [educationSaved, setEducationSaved] = useState(tempSaved)
+
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        education.educationId = data.educationId
-        education.institution = data.institution
-        education.degree = data.degree
-        education.startDate = data.startDate
-        education.endDate = data.endDate
-        education.current = data.current
-        education.saved = true
-    }, [data])
-
     const handleEducationOnSave = () => {
-        education.educationId = educationId
-        education.institution = institution
-        education.degree = degree
-        education.startDate = startDate
-        education.endDate = endDate
-        education.current = isCurrentJob
-        education.saved = true
-        dispatch(saveEducationAction(education))
+        education.educationId = EduId
+        education.institution = EduInstitution
+        education.degree = EduDegree
+        education.startDate = eduStartDate
+        education.endDate = eduEndDate
+        education.current = eduCurrent
+        setEducationSaved(!educationSaved)
+        dispatch(saveTempEducationAction(education))
     }
-    const handleEducationOnCancel = () => {}
+    const handleEducationOnCancel = () => {
+        dispatch(deleteEducationAction(EduId))
+    }
+
     const handleEducationOnEdit = () => {
-        isEditMode.current = true
+        setEducationSaved(!educationSaved)
+        dispatch(editEducationAction(EduId))
     }
+
     const handleEducationOnDelete = () => {
-        dispatch(deleteEducationAction(education.educationId))
+        dispatch(deleteEducationAction(EduId))
     }
 
   return (
-    <div key={educationId} className="educationForm">
+    <div key={EduId} className="educationForm">
         <div className="row">
             <div className="col mb-3 formField">
                 <label className="form-label" htmlFor="">Institution Name</label>
-                {!education.saved && isEditMode
+                {!educationSaved
                 ? (
-                    <input onChange={e => setInstitution(e.target.value)} type="text" className="form-control form-control-sm field" value={institution} />
+                    <input onChange={e => setEduInstitution(e.target.value)} type="text" className="form-control form-control-sm field" value={EduInstitution} />
                 ) 
                 : (<div>{institution}</div>)}
             </div>
@@ -58,9 +55,9 @@ const EducationForm = ({data}) => {
         <div className="row">
             <div className="col mb-3 formField">
                 <label className="form-label" htmlFor="">Degree</label>
-                {!education.saved && isEditMode
+                {!educationSaved
                 ? (
-                <select value={degree} onChange={e => setDegree(e.target.value)} className="form-select form-select-sm" aria-label="Default select example">
+                <select value={EduDegree} onChange={e => setEduDegree(e.target.value)} className="form-select form-select-sm" aria-label="Default select example">
                     <option defaultValue>Select gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -73,9 +70,9 @@ const EducationForm = ({data}) => {
             </div>
             <div className="col mb-3 formField">
                 <label className="form-label" htmlFor="">Start Date</label>
-                {!education.saved && isEditMode
+                {!educationSaved
                 ? (
-                    <input value={startDate} onChange={e => setStartDate(e.target.value)} type="date" className="form-control form-control-sm field" />
+                    <input value={eduStartDate} onChange={e => setEduStartDate(e.target.value)} type="date" className="form-control form-control-sm field" />
                 ) 
                 : (
                     <div>{startDate}</div>
@@ -83,9 +80,9 @@ const EducationForm = ({data}) => {
             </div>
             <div className="col mb-3 formField">
                 <label className="form-label" htmlFor="">End Date</label>
-                {!education.saved && isEditMode
+                {!educationSaved
                 ? (
-                    <input value={endDate} onChange={e => setEndDate(e.target.value)} type="date" className="form-control form-control-sm field" />
+                    <input value={eduEndDate} onChange={e => setEduEndDate(e.target.value)} type="date" className="form-control form-control-sm field" />
                 ) 
                 : (
                     <div>{endDate}</div>
@@ -93,26 +90,26 @@ const EducationForm = ({data}) => {
             </div>
             <div className="col mb-3 formField">
                 <div className="form-check">
-                {!education.saved && isEditMode
+                {!educationSaved
                 ? (
                     <>
-                        <input checked={isCurrentJob} onChange={e => setIsCurrentJob(e.target.checked)} className="form-check-input" type="checkbox" value="" id="flexCheckChecked"  />
+                        <input value={eduCurrent} checked={eduCurrent} onChange={e => setEduCurrent(e.target.checked)} className="form-check-input" type="checkbox" id="flexCheckChecked"  />
                         <label className="form-check-label" htmlFor="flexCheckChecked">
                             Current
                         </label>
                     </>
                 ) 
                 : (
-                    <div>{isCurrentJob && 'Current Job'}</div>
+                    <div>{educationSaved && 'Current Job'}</div>
                 )}
                 </div>
             </div>
         </div>
-        {!education.saved && isEditMode
+        {!educationSaved
         ? (
             <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                <ActionButton text="Cancel" color="danger" onClick={handleEducationOnSave} />
-                <ActionButton text="Save" color="primary" onClick={handleEducationOnCancel} />
+                <ActionButton text="Cancel" color="danger" onClick={handleEducationOnCancel} />
+                <ActionButton text="Save" color="primary" onClick={handleEducationOnSave} />
             </div>
         ) 
         : (

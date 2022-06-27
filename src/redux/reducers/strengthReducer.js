@@ -9,21 +9,18 @@ const initialStrengthState = {
 const strengthReducer = (state = initialStrengthState, action) => {
     switch (action.type) {
         case ADD_STRENGTH:
+            strength.tempSaved = false
             return { ...state, strengths: [...state.strengths, strength] }
         case GET_STRENGTH:
             return action.payload
         case SAVE_STRENGTH:
              let stateCopyToSave = {...state}
-             let strengthToSave = stateCopyToSave.strengths.find( stateItem => stateItem.strengthId === action.payload.strengthId )
-             let index = state.strengths.indexOf(strengthToSave)
-             strengthToSave.tempSaved = true
-             stateCopyToSave.strengths[index] = {...strengthToSave}
             return stateCopyToSave
         case SAVE_TEMP_STRENGTH:
             let stateCopyToTempSave = {...state}
-            
             let strengthToSaveTemp = stateCopyToTempSave.strengths.find( stateItem => stateItem.strengthId === action.payload.strengthId )
              let indexToSaveTemp = state.strengths.indexOf(strengthToSaveTemp)
+             //TODO ADD PAYLOAD DATA from action.payload
              strengthToSaveTemp.tempSaved = true
              stateCopyToTempSave.strengths[indexToSaveTemp] = {...strengthToSaveTemp}
              stateCopyToTempSave.unsavedStrengths = false
