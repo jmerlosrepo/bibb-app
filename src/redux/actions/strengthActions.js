@@ -1,6 +1,6 @@
 import { useDataOperations } from "../../hooks/useDataOperations"
 import { endPoints } from "../../config/apiEndpoints"
-import { ADD_STRENGTH, GET_STRENGTH, SAVE_STRENGTH, SAVE_TEMP_STRENGTH, DELETE_STRENGTH } from "../actions/constants"
+import { ADD_STRENGTH, GET_STRENGTH, SAVE_STRENGTH, SAVE_TEMP_STRENGTH, DELETE_STRENGTH, EDIT_STRENGTH } from "../actions/constants"
 
 const getStrength = (id) => {
     return {
@@ -16,10 +16,10 @@ const saveStrength = (strengthData) => {
     }
 }
 
-const deleteStrength = (id) => {
+const deleteStrength = (payload) => {
     return {
         type: DELETE_STRENGTH,
-        id
+        payload
     }
 }
 
@@ -29,7 +29,14 @@ const addStrength = (id) => {
     }
 }
 
-export const saveTempStrength = (strengthData) => {
+export const editSterngthAction = (id) => {
+    return {
+        type: EDIT_STRENGTH,
+        id
+    }
+}
+
+export const saveTempStrengthAction = (strengthData) => {
     return {
         type: SAVE_TEMP_STRENGTH,
         payload: strengthData
@@ -37,9 +44,9 @@ export const saveTempStrength = (strengthData) => {
 }
 
 export const addStrengthAction = (id) => dispatch => {
-    const [ apiResponse, apiCallFunction ] = useDataOperations()
-    apiCallFunction(endPoints.userSterngths, 'POST', {id} )
-    dispatch(addStrength({...apiResponse, id}))
+    //const [ apiResponse, apiCallFunction ] = useDataOperations()
+    //apiCallFunction(endPoints.userSterngths, 'POST', {id} )
+    dispatch(addStrength())
 }
 
 export const getStrengthAction = (id) => dispatch => {
@@ -55,7 +62,7 @@ export const saveStrengthAction = (strengthData) => dispatch => {
 }
 
 export const deleteStrengthAction = (id) => dispatch => {
-    const [ apiResponse, apiCallFunction ] = useDataOperations()
-    apiCallFunction(endPoints.userSterngths, 'DELETE', null, {id} )
-    dispatch(deleteStrength({...apiResponse, id}))
+    // const [ apiResponse, apiCallFunction ] = useDataOperations()
+    // apiCallFunction(endPoints.userSterngths, 'DELETE', null, {id} )
+    dispatch(deleteStrength({id}))
 }

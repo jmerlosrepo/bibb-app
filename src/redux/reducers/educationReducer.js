@@ -6,7 +6,6 @@ const initialEducationState = [education]
 const educationReducer = (state = initialEducationState, action) => {
     switch (action.type) {
         case ADD_EDUCATION:
-            console.log('ADD EDUCATION')
             return [...state, education]
         case GET_EDUCATION:
             return action.payload

@@ -1,6 +1,6 @@
 export const strength = {
-    id: '',
-    strengthId: '',
+    id: '1',
+    strengthId: '2',
     title: '',
     icon: '',
     detail: '',

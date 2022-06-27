@@ -5,18 +5,14 @@ import StrengthsForm from '../StrengthsForm/StrengthsForm'
 import ActionButton from '../ActionButton/ActionButton'
 
 const StrengthsSection = () => {
-    const [strengthSaved, setStrengthSaved] = useState(false)
     const strengths = useSelector(state => state.strengthReducer)
+    const [strengthSaved, setStrengthSaved] = useState(strengths.unsavedStrengths)
     const dispatch = useDispatch()
     
     useEffect(() => {
-        getUnsavedStrengths()
+        setStrengthSaved(strengths.unsavedStrengths)
     }, [strengths])
 
-    const getUnsavedStrengths = () => { 
-        let unsavedStrength = strengths.filter( strength => strength.tempSaved === false )
-        setStrengthSaved( saved => unsavedStrength ? false : true)
-    }
 
     const handleStrengthsOnAddStrength = () => {
         dispatch(addStrengthAction())
@@ -26,9 +22,9 @@ const StrengthsSection = () => {
   return (
     <div>
         <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-            <ActionButton disabled={!strengthSaved} text="Add Strength" color="success" onClick={handleStrengthsOnAddStrength} />
+            <ActionButton disabled={strengthSaved} text="Add Strength" color="success" onClick={handleStrengthsOnAddStrength} />
         </div>
-        { strengths.map( 
+        { strengths.strengths.map( 
                 strength => (
                     <StrengthsForm data={strength}  />
                 ) 
