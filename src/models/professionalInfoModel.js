@@ -1,9 +1,11 @@
 export const professionalInfo = {
     id: '',
+    professionalInfoId: '',
     organization: '',
     jobTitle: '',
     startDate: '',
     endDate: '',
     current: false,
-    activities: ''
+    activities: '',
+    tempSaved: false
 }

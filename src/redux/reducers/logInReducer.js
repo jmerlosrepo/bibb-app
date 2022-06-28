@@ -1,5 +1,6 @@
 import { LOGIN_USER } from "../actions/constants"
-const intialLoginState = {}
+import { userLogin } from "../../models/userLoginModel"
+const intialLoginState = userLogin
 
 const logInUserReducer = (state= intialLoginState, action) => {
     switch (action.type) {

@@ -1,4 +1,32 @@
-import { MAIN_PATH } from "./constants"
+import { 
+    MAIN_PATH, 
+    USER_ENDPOINT, 
+    USER_PROFILE_ENDPOINT, 
+    USER_LOGIN_ENDPOINT, 
+    USER_ABOUT_ME_ENDPOINT, 
+    USER_ADDRESS_ENDPOINT, 
+    USER_CERTIFICATES_ENDPOINT, 
+    USER_EDUCATION_ENDPOINT, 
+    USER_LANGUAGES_ENDPOINT, 
+    USER_MAJOR_SKILLS_ENDPOINT, 
+    USER_PERSONAL_INFO_ENDPOINT, 
+    USER_PROFESSIONAL_INFO_ENDPOINT, 
+    USER_SOCIAL_MEDIA_ENDPOINT, 
+    USER_STRENGTHS_ENDPOINT
+} from "./constants"
+
 export const endPoints = {
-    userEndPoint: () => `${MAIN_PATH}/register-user`
+    userRegister: `${MAIN_PATH}${USER_ENDPOINT}`,
+    userProfile: `${MAIN_PATH}${USER_PROFILE_ENDPOINT}`,
+    userLogIn: `${MAIN_PATH}${USER_LOGIN_ENDPOINT}`,
+    userAboutMe: `${MAIN_PATH}${USER_ABOUT_ME_ENDPOINT}`,
+    userAddress: `${MAIN_PATH}${USER_ADDRESS_ENDPOINT}`,
+    userCertificates: `${MAIN_PATH}${USER_CERTIFICATES_ENDPOINT}`,
+    userEducation: `${MAIN_PATH}${USER_EDUCATION_ENDPOINT}`,
+    userLanguages: `${MAIN_PATH}${USER_LANGUAGES_ENDPOINT}`,
+    userMajorSkills: `${MAIN_PATH}${USER_MAJOR_SKILLS_ENDPOINT}`,
+    userPersonalInfo: `${MAIN_PATH}${USER_PERSONAL_INFO_ENDPOINT}`,
+    userProfessionalInfo: `${MAIN_PATH}${USER_PROFESSIONAL_INFO_ENDPOINT}`,
+    userSocialMedia: `${MAIN_PATH}${USER_SOCIAL_MEDIA_ENDPOINT}`,
+    userStrengths: `${MAIN_PATH}${USER_STRENGTHS_ENDPOINT}`,
 }

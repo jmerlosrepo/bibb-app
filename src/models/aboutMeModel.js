@@ -1,5 +1,6 @@
 export const aboutMe = {
     id: '',
     professionalBackground: '',
-    personalComment: ''
+    personalComment: '',
+    tempSaved: false
 }

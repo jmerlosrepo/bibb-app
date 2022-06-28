@@ -1,5 +1,6 @@
 export const portfolioImage = {
     id: '',
     portfolioId: '',
-    url: ''
+    url: '',
+    tempSaved: false
 }

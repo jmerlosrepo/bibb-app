@@ -1,3 +1,11 @@
+$form_background: #FAFAFA;
+$base_white: #fff;
+$base_color: #3C00E7;
+$base_black: #212121;
+$secondary_color: #F5F5F5;
+$label_color: #757575;
+$greyed_text: #616161;
+
 body, html{
     background-color: #edebeb !important;
 }
@@ -6,8 +14,22 @@ body, html{
     margin-top: 20px;
 }
 
+.save-profile-button-spacing{
+    margin-bottom: 20px;
+}
+
 .button-margin{
     margin: 2px;
+}
+
+.btn-primary{
+    background-color: $base_color !important;
+    color: $base_white !important;
+}
+
+.btn-secondary{
+    background-color: $secondary_color !important;
+    color: $base_black !important;
 }
 
 .hide-modal{
@@ -51,10 +73,14 @@ body, html{
 }
 
 .fieldset-section{
-    background-color: #fff;
+    background-color: $form_background;
     border-radius: 6px;
     border: 1px solid #fff;
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.18);
     padding: 25px;
     margin-bottom: 40px;
+}
+
+.tag-item{
+
 }

@@ -1,5 +1,6 @@
 export const portfolioTechnology= {
     id: '',
     portfolioId: '',
-    name: ''
+    name: '',
+    tempSaved: false
 }

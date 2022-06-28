@@ -1,0 +1,62 @@
+import { useDataOperations } from "../../hooks/useDataOperations"
+import { endPoints } from "../../config/apiEndpoints"
+import { GET_LANGUAGES, ADD_LANGUAGES, SAVE_LANGUAGES, SAVE_TEMP_LANGUAGES, DELETE_LANGUAGES } from "./constants"
+
+const addLanguage = (id) => {
+    return {
+        type: ADD_LANGUAGES,
+        id
+    }
+}
+
+const getLanguage = (id) => {
+    return {
+        type: GET_LANGUAGES,
+        id
+    }
+}
+
+const saveLanguage = (languageData) => {
+    return {
+        type: SAVE_LANGUAGES,
+        payload: languageData
+    }
+}
+
+const deleteLanguage = (id) => {
+    return {
+        type: DELETE_LANGUAGES,
+        id
+    }
+}
+
+export const saveTempLanguageAction = (languageData) => {
+    return {
+        type: SAVE_TEMP_LANGUAGES,
+        payload: languageData
+    }
+}
+
+export const addLanguageAction = (id) => dispatch => {
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'POST', {id} )
+    dispatch(addLanguage({...apiResponse, id}))
+}
+
+export const getLanguageAction = (id) => dispatch => {
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'GET', null, {id} )
+    dispatch(getLanguage({...apiResponse, id}))
+}
+
+export const saveLanguageAction = (languageData) => dispatch => {
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'GET', languageData )
+    dispatch(saveLanguage({...apiResponse, ...languageData}))
+}
+
+export const deleteLanguageAction = (id) => dispatch => {
+    const [ apiResponse, apiCallFunction ] = useDataOperations()
+    apiCallFunction(endPoints.userLanguages, 'DELETE', null, {id} )
+    dispatch(deleteLanguage({...apiResponse, id}))
+}

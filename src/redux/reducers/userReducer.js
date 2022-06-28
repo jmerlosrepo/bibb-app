@@ -1,5 +1,6 @@
 import { REGISTER_USER } from "../actions/constants";
-const initialUserState = {}
+import { registerUserModel } from "../../models/registerUserModel";
+const initialUserState = registerUserModel
 
 const userReducer = (state = initialUserState, action) => {
     switch (action.type) {

@@ -1,57 +1,24 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addStrengthAction, getStrengthAction, saveStrengthAction, deleteStrengthAction } from '../../redux/actions/strengthActions'
+import React from 'react'
 import AddressForm from '../../components/AddressForm/AddressForm'
 import AboutMeForm from '../../components/AboutMeForm/AboutMeForm'
-import ActionButton from '../../components/ActionButton/ActionButton'
-import CertificatesForm from '../../components/CertificatesForm/CertificatesForm'
+import CertificatesSection from '../../components/CertificatesSection/CertificatesSection'
 import FieldSet from '../../components/FieldSet/FieldSet'
-import EducationForm from '../../components/EducationForm/EducationForm'
-import ExperienceForm from '../../components/ExperienceForm/ExperienceForm'
-import LanguagesForm from '../../components/LanguagesForm/LanguagesForm'
-import MajorSkillForm from '../../components/MajorSkillFomr/MajorSkillForm'
+import EducationSection from '../../components/EducationSection/EducationSection'
+import ExperienceSection from '../../components/ExperienceSection/ExperienceSection'
+import LanguagesSection from '../../components/LanguagesSection/LanguagesSection'
+import MajorSkillsSection from '../../components/MajorSkillsSection/MajorSkillsSection'
 import PersonalInfoForm from '../../components/PersonalInfoForm/PersonalInfoForm'
-import SocialMediaForm from '../../components/SocialMediaForm/SocialMediaForm'
-import StrengthsForm from '../../components/StrengthsForm/StrengthsForm'
-
+import PortfolioSection from '../../components/PortfolioSection/PortfolioSection'
+import SocialMediaSection from '../../components/SocialMediaSection/SocialMediaSection'
+import StrengthsSection from '../../components/StrengthsSection/StrengthsSection'
+import SubmitCancelProfileControls from '../../components/SubmitCancelProfileControls/SubmitCancelProfileControls'
 const Profile = () => {
 
-    const strengths = useSelector(state => state.strengthReducer)
-    const [strengthSaved, setStrengthSaved] = useState(false)
-    const dispatch = useDispatch()
-
-    console.log('STRENGTHS', strengths)
-
-    const handleStrengthsOnAddStrength = () => {
-        dispatch(addStrengthAction())
-    }
-    const handleStrengthsOnSave = () => {
-        setStrengthSaved(!strengthSaved)
-    }
-    const handleStrengthsOnCancel = () => {}
-    const handleEducationOnAddEducation = () => {}
-    const handleEducationOnSave = () => {}
-    const handleEducationOnCancel = () => {}
-    const handleExperienceOnAddExperience = () => {}
-    const handleExperienceOnSave = () => {}
-    const handleExperienceOnCancel = () => {}
-    const handleMajorSkillOnAddMajorSkill = () => {}
-    const handleMajorSkillOnSave = () => {}
-    const handleMajorSkillOnCancel = () => {}
-    const handleLanguagesOnAddLanguage = () => {}
-    const handleLanguageOnSave = () => {}
-    const handleLanguageOnCancel = () => {}
-    const handleCertificatesOnAddCertificate = () => {}
-    const handleCertificatesOnSave = () => {}
-    const handleCertificatesOnCancel = () => {}
-    const handleSocialMediaOnAddSocialMedia = () => {}
-    const handleSocialMediaOnSave = () => {}
-    const handleSocialMediaOnCancel = () => {}
-
-  return (
-    <div className="container mainContainer">
+    return (
+        <div className="container mainContainer">
         <h1>Profile</h1>
         <form>
+            <SubmitCancelProfileControls />
             <FieldSet title="Personal Info:">
                 <PersonalInfoForm />
             </FieldSet>
@@ -62,58 +29,30 @@ const Profile = () => {
                 <AboutMeForm />
             </FieldSet>
             <FieldSet title="My Strengths:">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton disabled={!strengthSaved} text="Add Strength" color="success" onClick={handleStrengthsOnAddStrength} />
-                </div>
-                { strengths.map( 
-                        strength => (
-                            <StrengthsForm data={strength} onSave={handleStrengthsOnSave} onCancel={handleStrengthsOnCancel} />
-                        ) 
-                    ) 
-                }
+                <StrengthsSection />
             </FieldSet>
             <FieldSet title="Education Info:">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Education" color="success" onClick={handleEducationOnAddEducation} />
-                </div>
-                <EducationForm onSave={handleEducationOnSave} onCancel={handleEducationOnCancel}/>
+                <EducationSection />
             </FieldSet>
             <FieldSet title="Professional Info:">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Experience" color="success" onClick={handleExperienceOnAddExperience} />
-                </div>
-                <ExperienceForm onSave={handleExperienceOnSave} onCancel={handleExperienceOnCancel} />
+                <ExperienceSection />
             </FieldSet>
             <FieldSet title="Major Skills:">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Major Skill" color="success" onClick={handleMajorSkillOnAddMajorSkill} />
-                </div>
-                <MajorSkillForm onSave={handleMajorSkillOnSave} onCancel={handleMajorSkillOnCancel} />
+                <MajorSkillsSection />
             </FieldSet>
             <FieldSet title="Languages:">
-                <div className="form-check">
-                    <input onChange={() => {}} className="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-                    <label className="form-check-label" htmlFor="flexCheckChecked">
-                        Show Languages as Badges
-                    </label>
-                </div>
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Language" color="success" onClick={handleLanguagesOnAddLanguage} />
-                </div>
-                <LanguagesForm onSave={handleLanguageOnSave} onCancel={handleLanguageOnCancel} />
+                <LanguagesSection />
             </FieldSet>
             <FieldSet title="Certificates">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Certificate" color="success" onClick={handleCertificatesOnAddCertificate} />
-                </div>
-                <CertificatesForm onSave={handleCertificatesOnSave} onCancel={handleCertificatesOnCancel} />
+                <CertificatesSection />
             </FieldSet>
             <FieldSet title="Social Media">
-                <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-                    <ActionButton text="Add Social Media" color="success" onClick={handleSocialMediaOnAddSocialMedia} />
-                </div>
-                <SocialMediaForm onSave={handleSocialMediaOnSave} onCancel={handleSocialMediaOnCancel} />
+                <SocialMediaSection />
             </FieldSet>
+            <FieldSet title="Portfolio">
+                <PortfolioSection />
+            </FieldSet>
+            <SubmitCancelProfileControls />
         </form>
     </div>
   )

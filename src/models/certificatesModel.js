@@ -3,5 +3,6 @@ export const certificate = {
     company: '',
     title: '',
     icon: '',
-    year: 1900
+    year: 1900,
+    tempSaved: false
 }

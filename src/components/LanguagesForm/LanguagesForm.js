@@ -3,6 +3,8 @@ import ActionButton from '../ActionButton/ActionButton'
 
 const LanguagesForm = ({ onSave, onCancel }) => {
   let isBadge =false
+  const handleLanguageOnSave = () => {}
+  const handleLanguageOnCancel = () => {}
   return (
     <div className="languagesForm">
         <div className="row">
@@ -20,8 +22,8 @@ const LanguagesForm = ({ onSave, onCancel }) => {
             }
         </div>
         <div className="button-spacing d-grid gap-2 d-md-flex justify-content-md-end">
-          <ActionButton text="Cancel" color="danger" onClick={onCancel} />
-          <ActionButton text="Save" color="primary" onClick={onSave} />
+          <ActionButton text="Cancel" color="danger" onClick={handleLanguageOnCancel} />
+          <ActionButton text="Save" color="primary" onClick={handleLanguageOnSave} />
         </div>
     </div>
   )

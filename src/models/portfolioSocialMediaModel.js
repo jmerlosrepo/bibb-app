@@ -2,5 +2,6 @@ export const portfolioSocialMedia = {
     id: '',
     portfolioId: '',
     url: '',
-    icon:''
+    icon:'',
+    tempSaved: false
 }
