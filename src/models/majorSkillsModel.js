@@ -1,6 +1,7 @@
 export const majorSkills = {
     id: '',
+    majorSkillId: '',
     title: '',
-    knowledge: {},
+    knowledge: [],
     tempSaved: false
 }
